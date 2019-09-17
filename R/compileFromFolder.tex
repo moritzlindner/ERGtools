@@ -1,0 +1,174 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={compileFromFolder.R},
+            pdfauthor={Moritz},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{compileFromFolder.R}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Moritz}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{Sat Sep 14 00:32:24 2019}
+
+
+\begin{document}
+\maketitle
+
+Compilres ERG recordings from multiple mice
+
+This function imports ERG recordings from files in given folder and
+compiles them into the variables TRACES, STATS and STIMTYPES of a
+SUMMARY object @param RECS a list of files containing ERG recordins
+@export
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{compileFromFolder<-}\ControlFlowTok{function}\NormalTok{(RECS,}\DataTypeTok{Flicker=}\StringTok{"Flicker"}\NormalTok{)\{}
+\NormalTok{  TRACES<-}\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{Exp=}\KeywordTok{character}\NormalTok{(),}\DataTypeTok{Stim=}\KeywordTok{character}\NormalTok{(),}\DataTypeTok{t=}\KeywordTok{numeric}\NormalTok{(),}\DataTypeTok{val=}\KeywordTok{numeric}\NormalTok{())}
+\NormalTok{  STATS<-}\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{Exp=}\KeywordTok{character}\NormalTok{(),}\DataTypeTok{Stim=}\KeywordTok{character}\NormalTok{(),}\DataTypeTok{Val=}\KeywordTok{numeric}\NormalTok{(),}\DataTypeTok{Pos=}\KeywordTok{numeric}\NormalTok{(),}\DataTypeTok{Type=}\KeywordTok{character}\NormalTok{())}
+\NormalTok{  STIMTYPES<-}\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{Stimulus=}\KeywordTok{character}\NormalTok{(),}\DataTypeTok{bg=}\KeywordTok{character}\NormalTok{(),}\DataTypeTok{Intensity=}\KeywordTok{numeric}\NormalTok{(),}\DataTypeTok{Mode=}\KeywordTok{character}\NormalTok{(),}\DataTypeTok{Freq=}\KeywordTok{numeric}\NormalTok{(),}\DataTypeTok{SampleInterval=}\KeywordTok{numeric}\NormalTok{(),}\DataTypeTok{Filename=}\KeywordTok{character}\NormalTok{())}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ recs}\OperatorTok{$}\NormalTok{recs)\{}
+    \KeywordTok{load}\NormalTok{(}\KeywordTok{as.character}\NormalTok{(i))}
+\NormalTok{    STIMTYPES<-}\KeywordTok{rbind}\NormalTok{(STIMTYPES,ERG_LIST}\OperatorTok{$}\NormalTok{FEATURES)}
+    \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in} \KeywordTok{rownames}\NormalTok{(ERG_LIST}\OperatorTok{$}\NormalTok{FEATURES))\{}
+\NormalTok{      TRACES<-}\KeywordTok{rbind}\NormalTok{(TRACES,}\KeywordTok{data.frame}\NormalTok{(}\KeywordTok{rep}\NormalTok{(i,}\KeywordTok{length}\NormalTok{(ERG_LIST}\OperatorTok{$}\NormalTok{AVG[[j]]}\OperatorTok{$}\NormalTok{Mean)),}\KeywordTok{rep}\NormalTok{(ERG_LIST}\OperatorTok{$}\NormalTok{FEATURES[j,]}\OperatorTok{$}\NormalTok{Stimulus,}\KeywordTok{length}\NormalTok{(ERG_LIST}\OperatorTok{$}\NormalTok{AVG[[j]]}\OperatorTok{$}\NormalTok{Mean)),}\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(ERG_LIST}\OperatorTok{$}\NormalTok{AVG[[j]]}\OperatorTok{$}\NormalTok{Mean))}\OperatorTok{*}\NormalTok{ERG_LIST}\OperatorTok{$}\NormalTok{FEATURES[j,]}\OperatorTok{$}\NormalTok{SampleInterval,}\KeywordTok{as.numeric}\NormalTok{(ERG_LIST}\OperatorTok{$}\NormalTok{AVG[[j]]}\OperatorTok{$}\NormalTok{Mean)))}
+      \ControlFlowTok{if}\NormalTok{(}\KeywordTok{str_count}\NormalTok{(ERG_LIST}\OperatorTok{$}\NormalTok{FEATURES[j,]}\OperatorTok{$}\NormalTok{Stimulus,Flicker)}\OperatorTok{==}\DecValTok{0}\NormalTok{)\{}
+\NormalTok{        STATS<-}\KeywordTok{rbind}\NormalTok{(STATS,}\KeywordTok{data.frame}\NormalTok{(}\StringTok{"Exp"}\NormalTok{ =}\StringTok{ }\KeywordTok{rep}\NormalTok{(i,}\KeywordTok{length}\NormalTok{(ERG_LIST}\OperatorTok{$}\NormalTok{MEASURES[[j]]}\OperatorTok{$}\NormalTok{Val)),}\StringTok{"Stim"}\NormalTok{ =}\StringTok{ }\KeywordTok{rep}\NormalTok{(ERG_LIST}\OperatorTok{$}\NormalTok{FEATURES[j,]}\OperatorTok{$}\NormalTok{Stimulus,}\KeywordTok{length}\NormalTok{(ERG_LIST}\OperatorTok{$}\NormalTok{MEASURES[[j]]}\OperatorTok{$}\NormalTok{Val)),ERG_LIST}\OperatorTok{$}\NormalTok{MEASURES[[j]]))}
+\NormalTok{      \}}\ControlFlowTok{else}\NormalTok{\{}
+\NormalTok{        STATS<-}\KeywordTok{rbind}\NormalTok{(STATS,}\KeywordTok{data.frame}\NormalTok{(}\StringTok{"Exp"}\NormalTok{ =}\StringTok{ }\KeywordTok{rep}\NormalTok{(i,}\KeywordTok{length}\NormalTok{(ERG_LIST}\OperatorTok{$}\NormalTok{FLICKERSTATS[[j]]}\OperatorTok{$}\NormalTok{Val)),}\StringTok{"Stim"}\NormalTok{ =}\StringTok{ }\KeywordTok{rep}\NormalTok{(ERG_LIST}\OperatorTok{$}\NormalTok{FEATURES[j,]}\OperatorTok{$}\NormalTok{Stimulus,}\KeywordTok{length}\NormalTok{(ERG_LIST}\OperatorTok{$}\NormalTok{FLICKERSTATS[[j]]}\OperatorTok{$}\NormalTok{Val)),ERG_LIST}\OperatorTok{$}\NormalTok{FLICKERSTATS[[j]]))}
+\NormalTok{      \}}
+\NormalTok{    \}}
+
+    \CommentTok{#rm("ERG_LIST","Report")}
+\NormalTok{  \}}
+  \KeywordTok{colnames}\NormalTok{(TRACES)<-}\KeywordTok{c}\NormalTok{(}\StringTok{"Exp"}\NormalTok{,}\StringTok{"Stim"}\NormalTok{,}\StringTok{"t"}\NormalTok{,}\StringTok{"val"}\NormalTok{)}
+  \KeywordTok{colnames}\NormalTok{(STATS)<-}\KeywordTok{c}\NormalTok{(}\StringTok{"Exp"}\NormalTok{,}\StringTok{"Stim"}\NormalTok{,}\StringTok{"Val"}\NormalTok{,}\StringTok{"Pos"}\NormalTok{,}\StringTok{"Type"}\NormalTok{)}
+\NormalTok{  STATS}\OperatorTok{$}\NormalTok{Val<-}\KeywordTok{as.numeric}\NormalTok{(STATS}\OperatorTok{$}\NormalTok{Val)}
+\NormalTok{  STATS}\OperatorTok{$}\NormalTok{Pos<-}\KeywordTok{as.numeric}\NormalTok{(STATS}\OperatorTok{$}\NormalTok{Pos)}
+\NormalTok{  STIMTYPES<-}\KeywordTok{unique}\NormalTok{(STIMTYPES[,}\OperatorTok{-}\KeywordTok{which}\NormalTok{(}\KeywordTok{names}\NormalTok{(STIMTYPES) }\OperatorTok{==}\StringTok{ "Filename"}\NormalTok{)])}
+
+\NormalTok{  SUMMARY<-}\KeywordTok{list}\NormalTok{()}
+\NormalTok{  SUMMARY}\OperatorTok{$}\NormalTok{STIMTYPES<-STIMTYPES}
+\NormalTok{  SUMMARY}\OperatorTok{$}\NormalTok{STATS<-STATS}
+\NormalTok{  SUMMARY}\OperatorTok{$}\NormalTok{TRACES<-TRACES}
+  \KeywordTok{return}\NormalTok{(SUMMARY)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}
