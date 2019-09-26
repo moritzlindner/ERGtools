@@ -11,7 +11,7 @@ import_ERG(SRC = NULL, downsample = FALSE, keywords)
 
 \item{downsample}{target sampling rate for downsampling. If set to FALSE, no downsampling will be performed.}
 
-\item{keywords}{data.frame assigning keywords, as they can be encountered in comments to stimulus features. Set to "USER" for prompts.}
+\item{keywords}{data.frame assigning keywords, as they can be encountered in comments to stimulus features. The data.frame should have the columns data.frame with the columns "key","feature","value","default", where "key" is a keyword found in the comment of the abf file and "feature" and "value" contain the standardized data pair (e.g. "intensity" "0.01") that should be added for the recording if "key" is encounterd. Column "default" states what should be added if "key" is not encountered. Set to "USER" for prompts.}
 }
 \description{
 This function imports ERG recordings from abf files in a given folder into one list-type element

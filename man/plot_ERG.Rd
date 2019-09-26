@@ -7,13 +7,13 @@
 plot_ERG(curr, title, samp, marks = NULL)
 }
 \arguments{
-\item{curr}{TBC}
+\item{curr}{The current ERG trace to plot}
 
-\item{title}{TBC}
+\item{title}{The tilte for the plot (eg. recording conditions)}
 
-\item{samp}{TBC}
+\item{samp}{The sampling rate of curr}
 
-\item{marks}{TBC}
+\item{marks}{Any markers to be shown, e.g a-wave and b-wave positions}
 }
 \description{
 TBC

@@ -1,10 +1,10 @@
 #' Plots ERGs
 #'
 #' TBC
-#' @param curr TBC
-#' @param title TBC
-#' @param samp TBC
-#' @param marks TBC
+#' @param curr The current ERG trace to plot
+#' @param title The tilte for the plot (eg. recording conditions)
+#' @param samp The sampling rate of curr
+#' @param marks Any markers to be shown, e.g a-wave and b-wave positions
 #' @export
 #'
 plot_ERG<-function(curr,title,samp,marks=NULL){

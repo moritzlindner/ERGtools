@@ -2,7 +2,7 @@
 #'
 #' This function measures Flash and flicker ERG recordings as stored in an ERG_List object. Measures are stored in data frames in the MEASURES slot. For Flicker stimuli, Averaces from all measures is tored in FLICKERSTATS.
 #' @param ERG_LIST an ERG_LIST object
-#' @param TMAXBWAVE Maximum time of B-Wave Peak
+#' @param TMAXBWAVE Maximum time (in seconds) after flash stimulus to B-Wave peak
 #' @export
 #'
 
